@@ -21,12 +21,11 @@ $factory->define(User::class, function (Faker $faker) {
   return [
     'name' => $faker->name,
     'email' => $faker->unique()->safeEmail,
-    'email_verified_at' => now(),
     'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
     'remember_token' => str_random(10),
     'verified' => $verified = $faker->randomElement([User::VERIFIED_USER, User::UNVERIFIED_USER]),
     'verification_token' => $verified == User::VERIFIED_USER ? null : User::generateVerificationCode(),
-    'admin' =>$verified = $faker->randonElement([User::ADMIN_USER, User::REGULAR_USER]),
+    'admin' =>$verified = $faker->randomElement([User::ADMIN_USER, User::REGULAR_USER]),
   ];
 });
 
@@ -42,9 +41,9 @@ $factory->define(Product::class, function (Faker $faker) {
     'name' => $faker->word,
     'description' => $faker->paragraph(1),
     'quantity' => $faker->numberBetween(1, 10),
-    'status' => $faker->randonElement([Product::AVAILABLE_PRODUCT, Product::UNAVAILABLE_PRODUCT]),
+    'status' => $faker->randomElement([Product::AVAILABLE_PRODUCT, Product::UNAVAILABLE_PRODUCT]),
     'image' => $faker->randomElement(['infinix.jpg', 'infinix2.jpg', 'iphone.jpg']),
-    'seller_id' => $faker->User::all()->random()->id,
+    'seller_id' => User::all()->random()->id,
     // User::inRandomOrder()->first()->id,
   ];
 });
