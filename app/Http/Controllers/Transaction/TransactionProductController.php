@@ -16,6 +16,6 @@ class TransactionProductController extends Controller
   public function index(Transaction $transaction)
   {
     $product = $transaction->product;
-    return ['data' => $product];
+    return ['Product' => $product];
   }
 }

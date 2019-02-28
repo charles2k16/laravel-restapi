@@ -15,8 +15,8 @@ class SellerTransController extends Controller
    */
   public function index(Seller $seller)
   {
-    $transactions = $seller->products()->with('transactions')
-      ->get()->pluck('transactions')->collapse();
+    $transactions = $seller->products()->with('transaction')
+      ->get()->pluck('transaction')->collapse();
 
     return ['Transaction' => $transactions];
   }

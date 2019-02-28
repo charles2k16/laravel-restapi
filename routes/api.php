@@ -29,11 +29,14 @@ Route::resource('categories.products', 'Category\CategoryProductController', ['o
 
 //Prodcuts 
 Route::resource('products', 'Product\ProductController', ['only' => ['index', 'show']]);
+Route::resource('products.transaction', 'Product\ProductTransController', ['only' => ['index']]);
+Route::resource('products.category', 'Product\ProductCategoryController', ['only' => ['index', 'update', 'destroy']]);
+Route::resource('products.buyers.transactions', 'Product\ProductBuyerTransController', ['only' => ['store']]);
 
 //Sellers 
 Route::resource('sellers', 'Seller\SellerController', ['only' => ['index', 'show']]);
-Route::resource('sellers.transactions', 'Seller\SellerTransController', ['only' => ['index']]); // error
-Route::resource('sellers.products', 'Seller\SellerProductController', ['except' => ['create', 'show', 'edit']]);
+Route::resource('sellers.transactions', 'Seller\SellerTransController', ['only' => ['index']]);
+Route::resource('sellers.products', 'Seller\SellerProductController', ['except' => ['create', 'show', 'edit']]); //error for update
 
 //Transaction
 Route::resource('transactions', 'Transaction\TransactionController', ['only' => ['index', 'show']]);

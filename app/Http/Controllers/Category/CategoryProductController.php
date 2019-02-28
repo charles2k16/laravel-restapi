@@ -15,7 +15,7 @@ class CategoryProductController extends Controller
    */
   public function index(Category $category)
   {
-    $products = $category->products;
+    $products = $category->products()->with('seller')->get();
     return ['Products' => $products];
   }
 }
