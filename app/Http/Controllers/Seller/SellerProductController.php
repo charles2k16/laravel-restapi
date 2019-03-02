@@ -39,9 +39,9 @@ class SellerProductController extends Controller
 
     $data = $request->all();
     $data['status'] = Product::UNAVAILABLE_PRODUCT;
-    $data['image'] = 'infinix.jpg';
+    $data['image'] = $request->image->store('');
     $data['seller_id'] = $seller->id;
-
+    
     $product = Product::create($data);
     return ['Product' => $product];
   }
@@ -89,6 +89,7 @@ class SellerProductController extends Controller
   {
     // $this->checkSeller($seller, $product);
     $product->delete();
+    \Storage::delete($product->image);
 
     return ['data' => 'Product deleted succesfully'];
   }
